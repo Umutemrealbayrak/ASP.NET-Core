@@ -1,0 +1,28 @@
+@model User
+<div class="row">
+    <div class="col-md-2">
+       <div class="bg-white p2">
+        <img src="/img/@Model.Image" class="img-fluid" alt="">
+       </div>
+    </div>
+    <div class="col-md-10">
+       <div class="bg-white p2">
+        <h5>@Model.name</h5>
+        <hr>
+        <div id="posts">
+            <h5 class="my-4">yayınlanan postlar</h5>
+             @foreach(var post in @Model.posts)
+            {
+                <li class="list-group-item"><i class="bi bi-caret-right-fill"></i><a href="/blog/details/@post.Url">@post.title</a></li>
+            }
+        </div>
+        <div id="comments">
+            <h5 class="my-4">yayınlanan yorumumlar</h5>
+            @foreach(var comment in @Model.comments)
+            {
+                <li class="list-group-item"><i class="bi bi-chat-right-text-fill"></i> @comment.text <i><u><a href="/blog/details/@comment.post.Url">[@comment.post.title]</a></u></i></li>
+            }
+        </div>
+       </div>
+    </div>
+</div>    

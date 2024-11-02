@@ -1,0 +1,19 @@
+@page "{id}"
+@using razorpagesExample.Pages.Employees
+@model DetailsModel
+
+<h1>Details Page</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <img src="~/img/@Model.employees.photo" alt="" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">@Model.employees.Name</h5>
+                <p class="card-text">@Model.employees.departmant</p>
+                <p class="card-text">@Model.employees.Email</p>
+                <a asp-page="/Employees/Index"  class="btn btn-primary">Geri Dön</a>
+            </div>
+        </div>
+    </div>
+</div>

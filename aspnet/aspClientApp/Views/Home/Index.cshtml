@@ -1,0 +1,46 @@
+﻿@model List<ProductDTO>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ürün Listesi</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <button class="btn btn-primary" onclick="toggleProducts()">Ürünleri Göster</button>
+
+    <div id="productList" class="mt-3" style="display:none;">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Fiyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var product in Model)
+                {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@product.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function toggleProducts() {
+        var productList = document.getElementById("productList");
+        productList.style.display = productList.style.display === "none" ? "block" : "none";
+    }
+</script>
+
+</body>
+</html>

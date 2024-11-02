@@ -1,0 +1,38 @@
+@page "{id}"
+@using razorpagesExample.Pages.Employees
+@model EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>edit</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="employees.Id">
+    <div class="row mb-3">
+        <label asp-for="employees.Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="employees.Name">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="employees.Email" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="employees.Email">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="employees.photo" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+        <input class="form-control" asp-for="employees.photo">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="employees.departmant" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+        <input class="form-control" asp-for="employees.departmant">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/Employees/Index" class="btn btn-primary">Cancel</a>
+</form>

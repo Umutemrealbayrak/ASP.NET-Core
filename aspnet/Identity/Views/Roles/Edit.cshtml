@@ -1,0 +1,48 @@
+@model AppRole
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=for, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form asp-action="Edit" method="post">
+       <input type="hidden" name="Id" value="@Model.Id">
+        
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+        </div>  
+        <button type="submit" class="btn btn-primary">kaydet</button>
+    </form>
+    @if(ViewBag.users!=null)
+    {
+    <table class="table table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var user in ViewBag.users)
+            {
+                 <tr>
+                    <td>@user.Id</td>
+                    <td>@user.FullName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary btn-sm">edit</a>
+                        
+                    </td>
+                 </tr> 
+            }
+        </tbody>
+    </table>
+    }
+</body>
+</html>

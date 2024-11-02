@@ -1,0 +1,45 @@
+@model List<ProductDTO>
+
+<div class="container mt-4">
+    <h2>Ürün ID Girin</h2>
+    <input type="number" id="productId" placeholder="Ürün ID'sini girin" />
+    <button class="btn btn-primary" onclick="getProduct()">Ürünü Göster</button>
+
+    <div id="productDetails" class="mt-3" style="display:none;">
+        <h3>Seçilen Ürün</h3>
+        <p id="productInfo"></p>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function getProduct() {
+        const id = parseInt(document.getElementById("productId").value);
+        if (isNaN(id)) {
+            alert("Lütfen geçerli bir ID girin.");
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Action("login", "Home")',
+            type: 'GET',
+            data: { id: id },
+            success: function (product) {
+                const productInfo = document.getElementById("productInfo");
+                const productDetailsDiv = document.getElementById("login");
+
+                if (product) {
+                    productInfo.innerHTML = `Ad: ${product.productName}, Fiyat: ${product.price}`;
+                    productDetailsDiv.style.display = "block";
+                } else {
+                    productInfo.innerHTML = "Ürün bulunamadı.";
+                    productDetailsDiv.style.display = "block";
+                }
+            },
+            error: function () {
+                document.getElementById("productInfo").innerHTML = "Ürün bulunamadı.";
+                document.getElementById("productDetails").style.display = "block";
+            }
+        });
+    }
+</script>

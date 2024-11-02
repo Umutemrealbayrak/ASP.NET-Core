@@ -1,0 +1,41 @@
+@page 
+@model IndexModel
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Çalışanlar</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Çalışanlar</h1>
+        <div class="row">
+            @foreach (var employee in Model.employesss)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="@employee.photo" class="card-img-top" alt="Fotoğraf" />
+                        <div class="card-body">
+                            <h5 class="card-title">@employee.Name</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Email:</h6>
+                            <p class="card-text">@employee.Email</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Departman:</h6>
+                            <p class="card-text">@employee.departmant</p>
+                            <div class="d-flex justify-content-between">
+                                <a asp-page="/Employees/Details" asp-route-id="@employee.Id" class="btn btn-primary btn-sm">Details</a>
+                                <a asp-page="/Employees/Edit" asp-route-id="@employee.Id" class="btn btn-danger btn-sm">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="~/js/jquery.slim.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

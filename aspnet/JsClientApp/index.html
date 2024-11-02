@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getProducts()">abc</button>
+    <input type="text" id="productId" placeholder="Ürün ID'si" />
+    <button onclick="getProduct()">Get Product</button>
+    <button onclick="Login()">Login</button>
+    <button onclick="Logout()">Logout</button>
+
+    <div id="divProducts">
+        
+    </div>
+
+    <script>
+         const Login = async () => {
+            const response = await fetch("http://localhost:5280/api/Users/login", {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+                body: JSON.stringify({ email: 'umutermealbayrak@gmail.com', password: 'umutemre'})
+            });
+            const result = await response.json();
+            localStorage.setItem("token", JSON.stringify(result.token));
+        }
+            const Logout = () => {
+            localStorage.removeItem("token");
+            const parent = document.getElementById("divProducts");
+            parent.innerHTML = ''; // Çıkış yaptıktan sonra ürünleri temizle
+            alert("Çıkış yapıldı.");
+        }
+
+
+        const getProducts = async () => {
+            const response = await fetch("http://localhost:5280/api/Products");
+            const products = await response.json();
+
+            displayProducts(products);
+        }
+        const getProduct = async () => {
+            const token = JSON.parse(localStorage.getItem("token"));
+            const id = document.getElementById("productId").value; // ID'yi al
+            const response = await fetch(`http://localhost:5280/api/products/${id}`, {
+                headers: { Authorization: `Bearer ${token}`}
+            });
+            const product = await response.json();
+            displayProduct(product);
+        }
+
+
+
+            const displayProduct = (product) => {
+            const parent = document.getElementById("divProducts");
+            parent.innerHTML = ''; // Önceki ürünleri temizle
+            parent.innerHTML += `
+                <div>
+                    <h5>${product.productName}</h5>
+                    <p>${product.price}</p>
+                </div>
+            `;
+        }
+
+        const displayProducts = (products) => {
+            const parent = document.getElementById("divProducts");
+
+            products.forEach(prd => {
+                parent.innerHTML += `
+                    <div>
+                        <h5>${prd.productName}</h5>
+                        <p>${prd.price}</p>
+                    </div>
+                `;
+            });
+        }    
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+﻿@page
+@using razorpagesExample.Pages
+@model NotFoundModel
+@{
+    ViewData["Title"] = "404 Not Found";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Kaynak bulunamadı</p>
+<a asp-page="/Employees/Index"  class="btn btn-primary">Geri Dön</a>

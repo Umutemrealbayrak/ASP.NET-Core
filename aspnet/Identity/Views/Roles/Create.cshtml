@@ -1,0 +1,20 @@
+@model AppRole
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=for, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">kaydet</button>
+    </form>
+</body>
+</html>
